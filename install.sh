@@ -6,14 +6,16 @@
 # TODO: Refactor out a function to do this stuff
 #
 
-if [ $(ls ~/.vimrc) = 0 ]; then #file exists
-    ln vimrc ../.vimrc
+VIMRC=~/.vimrc
+if [ $(ls $VIMRC) = 0 ]; then #file exists
+    ln vimrc $VIMRC
 else
     echo "The file ~/.vimrc exists, will not install vimrc"
 fi
 
-if [ $(ls ~/.vimrc) = 0 ]; then #file exists
-    ln rtorrent.rc ../.rtorrent.rc
+RTORRENTRC=~/.rtorrent.rc
+if [ $(ls $RTORRENTRC) = 0 ]; then #file exists
+    ln rtorrent.rc $RTORRENTRC
 else
     echo "The file ~/.vimrc exists, will not install vimrc"
 fi
