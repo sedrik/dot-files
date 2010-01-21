@@ -3,26 +3,20 @@
 #
 # A small install script for installing my configuration
 # TODO: Add questions on which configuration files to install.
-# TODO: Refactor out a function to do this stuff
+# TODO: Add a note on if we did not succed installing some script
 #
 
-VIMRC=~/.vimrc
-if [ $(ls $VIMRC) = 0 ]; then #file exists
-    ln vimrc $VIMRC
-else
-    echo "The file $VIMRC exists, will not install vimrc"
-fi
+function install_config {
+    CONFIG=$1
+    if [ $(ls $CONFIG) = 0 ]; then #file exists
+        ln vimrc $CONFIG
+        echo "Installed $CONFIG"
+    else
+        EXISTS=0
+        echo "The file $CONFIG exists, please install manually"
+    fi
+}
 
-RTORRENTRC=~/.rtorrent.rc
-if [ $(ls $RTORRENTRC) = 0 ]; then #file exists
-    ln rtorrent.rc $RTORRENTRC
-else
-    echo "The file $RTORRENTRC exists, will not install vimrc"
-fi
-
-GITCONFIG=~/.gitconfig
-if [ $(ls $GITCONFIG) = 0 ]; then #file exists
-    ln rtorrent.rc $GITCONFIG
-else
-    echo "The file $GITCONFIG exists, will not install vimrc"
-fi
+install_config ~/.vimrc
+install_config ~/.rtorrent.rc
+install_config ~/.gitconfig
