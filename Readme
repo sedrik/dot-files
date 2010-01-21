@@ -1,4 +1,5 @@
 A small collection of my configuration files
 
+install.sh - Installation script, issue ./install.sh to run it.
 rtorrent.rc - My rtorrent setup
 vimrc - My vim setup
