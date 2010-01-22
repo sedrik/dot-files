@@ -8,8 +8,9 @@
 
 function install_config {
     CONFIG=$1
+    CONFIG_DEST=$2
     if [ $(ls $CONFIG) = 0 ]; then #file exists
-        ln vimrc $CONFIG
+        ln $CONFIG_DEST $CONFIG
         echo "Installed $CONFIG"
     else
         EXISTS=0
@@ -17,6 +18,7 @@ function install_config {
     fi
 }
 
-install_config ~/.vimrc
-install_config ~/.rtorrent.rc
-install_config ~/.gitconfig
+install_config vimrc ~/.vimrc
+install_config rtorrent.rc ~/.rtorrent.rc
+install_config gitconfig ~/.gitconfig
+install_config vimperatorrc ~/.vimperatorrc
