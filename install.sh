@@ -2,8 +2,8 @@
 
 #
 # A small install script for installing my configuration
-# TODO: Add questions on which configuration files to install.
 # TODO: Add a note on if we did not succeed installing some script
+# TODO: Add check to see if the files exists, diff in that case.
 #
 
 function install_config {
