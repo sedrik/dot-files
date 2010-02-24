@@ -21,11 +21,11 @@ set mousemodel=extend
 set noshowmatch
 
 "Expand tabs to 2 spaces, always!
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
-"Use tab for auto completion
+"Use tab for autocompletion
 set wildchar=<Tab>
 "Allow command completion listing
 set wildmenu
@@ -48,6 +48,10 @@ set incsearch
 
 "No highlights
 set nohlsearch
+
+"I like my searches to be centered when I search
+nnoremap  n nzz
+nnoremap  N Nzz
 
 "Make backspace behave normal
 set backspace=2
@@ -90,7 +94,7 @@ filetype indent on
 set grepprg=grep\ -nH\ $*
 
 " Paste with ctrl+v
-nmap <silent> <C-v> :set paste<CR>"*p:set nopaste<CR>
+"nmap <silent> <C-v> :set paste<CR>"*p:set nopaste<CR>
 
 " You can use - to jump between windows
 map - <c-w>w
