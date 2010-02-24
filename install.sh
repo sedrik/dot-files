@@ -2,6 +2,7 @@
 
 #
 # A small install script for installing my configuration
+# TODO: FIX THE BROKENNESS AND ACTUALLY TEST THE SCRIPT!
 # TODO: Add a note on if we did not succeed installing some script
 # TODO: Add check to see if the files exists, diff in that case.
 #
@@ -9,7 +10,7 @@
 function install_config {
 CONFIG=$1
 CONFIG_DEST=$2
-if [ $(ls $CONFIG) = 0 ]; then #file exists
+if [ $(ls $CONFIG_DEST) = 0 ]; then #file exists
     ln $CONFIG_DEST $CONFIG
     echo "Installed $CONFIG"
 else
