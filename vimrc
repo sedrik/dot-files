@@ -20,9 +20,8 @@ set mousemodel=extend
 "No ugly bracket jumping matching, DIE EMACS DIE
 set noshowmatch
 
-"Expand tabs to 2 spaces, always!
-set tabstop=4
-set shiftwidth=4
+"Expand tabs to 4 spaces, always!
+set tabstop = softtabstop = shiftwidth = 4
 set expandtab
 
 "Use tab for auto completion
@@ -50,7 +49,7 @@ set incsearch
 set nohlsearch
 
 "Make backspace behave normal
-set backspace=2
+set backspace=4
 
 "Report allot
 set report=0
@@ -80,21 +79,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"latex suit
-"This plugin provides documentation via vim's help system. To
-"view it, use:
-" :help latex-suite.txt
-" :help latex-suite-quickstart.txt
-" :help latexhelp.txt
-" :help imaps.txt
-set grepprg=grep\ -nH\ $*
-
-" Paste with ctrl+v
-nmap <silent> <C-v> :set paste<CR>"*p:set nopaste<CR>
-
-" You can use - to jump between windows
-map - <c-w>w
-
 " Nice indenting command
 map t mnG=gg:%s/[ \t]*$//g<CR>'nzz
 
@@ -103,7 +87,7 @@ map t mnG=gg:%s/[ \t]*$//g<CR>'nzz
 map ,v :sp ~/.vimrc<CR><C-W>_
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
-"Highlight trailing backspaces =)
+"Highlight trailing backspaces
 au Syntax * syn match Error /\s\+$/ | syn match Error /^\s* \t\s*/
 
 :set fdm=indent
