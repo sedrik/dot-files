@@ -26,7 +26,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-"Use tab for auto completion
+"Use tab for autocompletion
 set wildchar=<Tab>
 "Allow command completion listing
 set wildmenu
@@ -49,6 +49,10 @@ set incsearch
 
 "No highlights
 set nohlsearch
+
+"I like my searches to be centered when I search
+nnoremap  n nzz
+nnoremap  N Nzz
 
 "Make backspace behave normal
 set backspace=2
@@ -96,8 +100,8 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-"Removes trailing whitespaces
-nmap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
+" Paste with ctrl+v
+"nmap <silent> <C-v> :set paste<CR>"*p:set nopaste<CR>
 
 "Indents the whole file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
