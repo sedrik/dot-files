@@ -20,9 +20,10 @@ set mousemodel=extend
 "No ugly bracket jumping matching, DIE EMACS DIE
 set noshowmatch
 
-"Expand tabs to 2 spaces, always!
-set tabstop=2
-set shiftwidth=2
+"Expand tabs to 4 spaces, always!
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 
 "Use tab for autocompletion
@@ -62,7 +63,7 @@ set report=0
 "Allow nice command prompt
 set cmdheight=2
 
-"Spelling =)
+" ==== Spelling ====
 ":setlocal spell spelllang=en
 " Spell check
 function! ToggleSpell()
@@ -74,9 +75,10 @@ function! ToggleSpell()
         unlet b:spell
     endif
 endfunction
-
+"Mapping for spelling
 nmap <F4> :call ToggleSpell()<CR>
 imap <F4> <Esc>:call ToggleSpell()<CR>a
+" ==== Spelling ====
 
 "Enable syntax highlighting and some nice filetype associations
 syntax enable
@@ -84,30 +86,36 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"latex suit
-"This plugin provides documentation via vim's help system. To
-"view it, use:
-" :help latex-suite.txt
-" :help latex-suite-quickstart.txt
-" :help latexhelp.txt
-" :help imaps.txt
-set grepprg=grep\ -nH\ $*
+"This functions stores your state and restores if after issuing the command
+"given
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
 
 " Paste with ctrl+v
 "nmap <silent> <C-v> :set paste<CR>"*p:set nopaste<CR>
 
-" You can use - to jump between windows
-map - <c-w>w
+"Indents the whole file
+nmap <leader>= :call Preserve("normal gg=G")<CR>
 
 " Nice indenting command
-map t mnG=gg:%s/[ \t]*$//g<CR>'nzz
+" Obsolete replaced by the two above commands
+"map t mnG=gg:%s/[ \t]*$//g<CR>'nzz
 
 ",v brings up my .vimrc
 ",V reloads it -- making all changes active (have to save first)
 map ,v :sp ~/.vimrc<CR><C-W>_
 map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
-"Highlight trailing backspaces =)
+"Highlight trailing backspaces
 au Syntax * syn match Error /\s\+$/ | syn match Error /^\s* \t\s*/
 
 :set fdm=indent
