@@ -4,9 +4,6 @@ set ruler
 "Tell us what mode we are currently in =)
 set showmode
 
-"No auto break line please
-set textwidth=0
-
 "Ignore case search
 set ignorecase
 
@@ -40,9 +37,6 @@ set autoindent
 
 "I don't like auto saving.
 set noautowrite
-
-"No wrap around long lines, let them continue
-set nowrap
 
 "Search during type
 set incsearch
@@ -106,10 +100,6 @@ endfunction
 "Indents the whole file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 
-" Nice indenting command
-" Obsolete replaced by the two above commands
-"map t mnG=gg:%s/[ \t]*$//g<CR>'nzz
-
 ",v brings up my .vimrc
 ",V reloads it -- making all changes active (have to save first)
 map ,v :sp ~/.vimrc<CR><C-W>_
@@ -118,4 +108,7 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 "Highlight trailing backspaces
 au Syntax * syn match Error /\s\+$/ | syn match Error /^\s* \t\s*/
 
-:set fdm=indent
+set fdm=indent
+
+"make vim recognmize the mod:fun syntax of erlang
+autocmd FileType erlang setlocal iskeyword+=:
