@@ -129,3 +129,22 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 "make vim recognmize the mod:fun syntax of erlang
 autocmd FileType erlang setlocal iskeyword+=:
+
+"Erlang TDD function
+" TODO: Make more general, fit to other languages and test suits
+" TODO: Make a separate scripts file for the tests
+command! -complete=file Test call s:Test()
+
+function! s:Test()
+    let s:testpath = "-pa test -pa test_hrl"
+    let s:ebinpath = "-pa ebin"
+    let s:libpath = "-pa ../meck/ebin"
+
+    let s:testfile = expand('%:t:r')
+
+    let s:paths = s:testpath . " " . s:ebinpath . " " . s:libpath
+    let cmd = "!erl " . s:paths .  " -eval 'error_logger:tty(false), eunit:test(" . s:testfile . ", [verbose]), halt()'"
+    :execute cmd
+    "echo cmd
+endfunction
+
