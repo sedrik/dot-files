@@ -1,0 +1,12 @@
+[ui]
+username = Fredrik Andersson <fredrik.andersson@erlang-solutions.com>
+verbose = True
+merge = vimdiff
+
+[auth]
+es.prefix = https://hg.erlangsystems.com
+es.username = fredrik.andersson
+
+[extensions]
+deps = /opt/hgdeps/deps.py
+crecord = /home/sedrik/.hgext/crecord/
