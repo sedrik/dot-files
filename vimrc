@@ -4,9 +4,6 @@ set ruler
 "Tell us what mode we are currently in =)
 set showmode
 
-"No auto break line please
-set textwidth=0
-
 "Ignore case search
 set ignorecase
 
@@ -40,9 +37,6 @@ set autoindent
 
 "I don't like auto saving.
 set noautowrite
-
-"No wrap around long lines, let them continue
-set nowrap
 
 "Search during type
 set incsearch
@@ -106,10 +100,6 @@ endfunction
 "Indents the whole file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 
-" Nice indenting command
-" Obsolete replaced by the two above commands
-"map t mnG=gg:%s/[ \t]*$//g<CR>'nzz
-
 ",v brings up my .vimrc
 ",V reloads it -- making all changes active (have to save first)
 map ,v :sp ~/.vimrc<CR><C-W>_
@@ -118,4 +108,47 @@ map <silent> ,V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 "Highlight trailing backspaces
 au Syntax * syn match Error /\s\+$/ | syn match Error /^\s* \t\s*/
 
-:set fdm=indent
+set fdm=indent
+
+"Make the tab key auto complete.
+function! SuperCleverTab()
+    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+        return "\<Tab>"
+    else
+        if &omnifunc != ''
+            return "\<C-X>\<C-O>"
+        elseif &dictionary != ''
+            return "\<C-K>"
+        else
+            return "\<C-N>"
+        endif
+    endif
+endfunction
+
+inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+"make vim recognmize the mod:fun syntax of erlang
+autocmd FileType erlang setlocal iskeyword+=:
+
+"Erlang TDD function
+" TODO: must make sure that all the files have the latest compilation!
+" TODO: Make more general, fit to other languages and test suits
+" TODO: Make a separate scripts file for the tests
+" TODO: Separate between source code files and test files
+" TODO: run dialyzer on source code
+" TODO: do Test for all open files that are src or test files
+command! -complete=file Test call s:Test()
+
+function! s:Test()
+    let s:testpath = "-pa test -pa test_hrl"
+    let s:ebinpath = "-pa ebin"
+    let s:libpath = "-pa ../meck/ebin"
+
+    let s:testfile = expand('%:t:r')
+
+    let s:paths = s:testpath . " " . s:ebinpath . " " . s:libpath
+    let cmd = "!make; erl " . s:paths .  " -eval 'error_logger:tty(false), eunit:test(" . s:testfile . ", [verbose]), halt()'"
+    :execute cmd
+    "echo cmd
+endfunction
+
