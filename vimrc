@@ -131,8 +131,12 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 autocmd FileType erlang setlocal iskeyword+=:
 
 "Erlang TDD function
+" TODO: must make sure that all the files have the latest compilation!
 " TODO: Make more general, fit to other languages and test suits
 " TODO: Make a separate scripts file for the tests
+" TODO: Separate between source code files and test files
+" TODO: run dialyzer on source code
+" TODO: do Test for all open files that are src or test files
 command! -complete=file Test call s:Test()
 
 function! s:Test()
@@ -143,7 +147,7 @@ function! s:Test()
     let s:testfile = expand('%:t:r')
 
     let s:paths = s:testpath . " " . s:ebinpath . " " . s:libpath
-    let cmd = "!erl " . s:paths .  " -eval 'error_logger:tty(false), eunit:test(" . s:testfile . ", [verbose]), halt()'"
+    let cmd = "!make; erl " . s:paths .  " -eval 'error_logger:tty(false), eunit:test(" . s:testfile . ", [verbose]), halt()'"
     :execute cmd
     "echo cmd
 endfunction
