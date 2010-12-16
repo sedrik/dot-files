@@ -15,7 +15,7 @@ URxvt*secondaryScroll:true
 URxvt*saveLines:32767
 URxvt*troughColor:#000000
 URxvt*scrollColor:#222222
-URxvt*font: xft:Inconsolata:size=12:antialias=true:hinting=true
+URxvt*font: xft:Inconsolata:size=13:antialias=true:hinting=true
 
 # with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s) ;)
 URxvt*urgentOnBell: true
@@ -27,3 +27,11 @@ URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
 URxvt*matcher.button: 1
 # don't forget to change this to your favorite browser
 URxvt*urlLauncher: firefox
+
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.dpi: 96
+Xft.rgba: rgb
