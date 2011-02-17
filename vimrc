@@ -130,25 +130,40 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 "make vim recognmize the mod:fun syntax of erlang
 autocmd FileType erlang setlocal iskeyword+=:
 
+" ErlTDD.vim - Fredrik Andersson
+" Small script to enable TDD from inside of vim
+" Currently only works with environments witch will build all test using make
+" test (for example raven).
+"
+" Invoke with :TDD
+
 "Erlang TDD function
-" TODO: must make sure that all the files have the latest compilation!
 " TODO: Make more general, fit to other languages and test suits
 " TODO: Make a separate scripts file for the tests
-" TODO: Separate between source code files and test files
 " TODO: run dialyzer on source code
 " TODO: do Test for all open files that are src or test files
-command! -complete=file Test call s:Test()
+command! -complete=file TDD call s:Test()
+
+"TODO: run in background and put output in quickfix window
+"autocmd BufWritePost *.erl call s:Test()
 
 function! s:Test()
-    let s:testpath = "-pa test -pa test_hrl"
-    let s:ebinpath = "-pa ebin"
-    let s:libpath = "-pa ../meck/ebin"
+    let testpath = "-pa test -pa test_hrl"
+    let ebinpath = "-pa ebin"
+    let libpath = "-pa ../meck/ebin"
 
-    let s:testfile = expand('%:t:r')
+    let theFile = expand('%:t:r') 
+    if matchstr(theFile, "test_") == "test_"
+        let testfile = theFile
+    else
+        let testfile = "test_" . theFile
+    endif
 
-    let s:paths = s:testpath . " " . s:ebinpath . " " . s:libpath
-    let cmd = "!make; erl " . s:paths .  " -eval 'error_logger:tty(false), eunit:test(" . s:testfile . ", [verbose]), halt()'"
-    :execute cmd
+    let paths = testpath . " " . ebinpath . " " . libpath
+    let eunit = "eunit:test(" . testfile . ", [verbose])"
+    let erlcmd = "-eval 'error_logger:tty(false), " . eunit . ", halt()'"
+    let cmd = "!make; make test; erl " . paths .  " " . erlcmd
+    execute cmd
+    "cexpr system(cmd)
     "echo cmd
 endfunction
-
