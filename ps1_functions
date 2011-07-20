@@ -7,7 +7,8 @@
 # This is done like so:
 #
 # [[ -s "$HOME/dot-files/ps1_functions" ]] &&
-# source "$HOME/dot-files/ps1_functions"
+# source "$HOME/dot-files/ps1_functions" &&
+# ps1_set --prompt ∫
 #
 # Then in order to set your prompt you simply do the following for example
 #
