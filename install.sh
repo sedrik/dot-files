@@ -5,6 +5,7 @@
 # TODO: FIX THE BROKENNESS AND ACTUALLY TEST THE SCRIPT!
 # TODO: Add a note on if we did not succeed installing some script
 # TODO: Add check to see if the files exists, diff in that case.
+# TODO: Do this stuff!
 #
 
 function install_config {
