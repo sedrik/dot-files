@@ -5,7 +5,7 @@ URxvt*background:Black
 URxvt*foreground:White
 URxvt*transparent:true
 URxvt*shading:20
-URxvt*scrollBar:true
+URxvt*scrollBar:false
 URxvt*scrollBar_right:true
 URxvt*scrollBar_floating:false
 URxvt*scrollstyle:plain
