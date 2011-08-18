@@ -35,6 +35,15 @@ printf " \033[32m\\\u\033[0m@\033[36m\\h\033[35m:\w\033[0m "
   fi
 }
 
+ps1_vim()
+{
+    VIM_PS1=""
+    if [ $VIM ]; then
+        VIM_PS1="[VIM] "
+    fi
+    printf "$VIM_PS1"
+}
+
 ps1_git()
 {
   local branch="" sha1="" line="" attr="" color=0
@@ -109,7 +118,7 @@ case "$token" in
     esac
 done
 
-PS1="\D{%H:%M:%S}$(ps1_identity)\$(ps1_git)${separator}${prompt_char} "
+PS1="\D{%H:%M:%S}$(ps1_identity)\$(ps1_git)${separator}$(ps1_vim)${prompt_char} "
 }
 
 ps2_set()
