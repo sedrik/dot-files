@@ -2,6 +2,14 @@
 	email = sir.sedrik@gmail.com
 	name = Sedrik
 [color]
+    ui = true
 	diff = auto
 	status = auto
 	branch = auto
+[push]
+        default = tracking
+[alias]
+    wdiff = diff --color-words
+    wshow = show --color-words
+[merge]
+        tool = vimdiff
