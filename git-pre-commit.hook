@@ -1,0 +1,64 @@
+#!/bin/bash
+
+PROJECT=
+TEST_HOST=
+TEST_COMMAND=
+
+PRINT_CMDS="print"
+
+function failure {
+    echo !!
+    echo !! Commit was aborted due to the following error
+    echo !! use --no-verify to bypass this check
+    echo !!
+    echo !! $1
+    echo !!
+
+    # Restore the project
+    git stash pop -q
+}
+
+function upload_commit {
+    # Upload clean tree
+    rsync --del --recursive . $TEST_HOST:$PROJECT-tmp
+}
+
+function run_tests {
+    # Run tests
+    ssh $TEST_HOST $TEST_COMMAND
+    if [ $? -ne 0 ]
+    then
+        failure "Test failed"
+        exit 1
+    fi
+}
+
+function no_prints {
+    # TODO support multiple ways of printing.
+    # TODO show which file that contains the statement
+    git diff HEAD | grep -n $PRINT_CMDS
+    if [ $? -eq 0 ]
+    then
+        failure "Commit contains print statements"
+        exit 1
+    fi
+}
+
+#############
+### Execution
+
+# Stash everything except the index
+git stash -u --keep-index
+
+# Ensure that we do not commit any print statements.
+no_prints
+
+#upload_commit
+#run_tests
+
+# Restore the project
+git stash pop -q
+
+##Clean up
+rm -rf $TMPDIR
+ssh $TEST_HOST "rm -rf $PROJECT-tmp"
