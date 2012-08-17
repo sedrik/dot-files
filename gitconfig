@@ -11,5 +11,6 @@
 [alias]
     wdiff = diff --color-words
     wshow = show --color-words
+    oneline = log master..HEAD --pretty=oneline
 [merge]
         tool = vimdiff
