@@ -1,6 +1,5 @@
 URxvt*loginShell:true
 URxvt*transparent:true
-URxvt*shading:5
 URxvt*background:Black
 URxvt*foreground:White
 URxvt*transparent:true
@@ -15,7 +14,7 @@ URxvt*secondaryScroll:true
 URxvt*saveLines:32767
 URxvt*troughColor:#000000
 URxvt*scrollColor:#222222
-URxvt*font: xft:Inconsolata:size=13:antialias=true:hinting=true
+URxvt*font: xft:Inconsolata:size=14:antialias=true:hinting=true
 
 # with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s) ;)
 URxvt*urgentOnBell: true
