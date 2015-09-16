@@ -17,3 +17,5 @@
     graph = log --graph --oneline
 [merge]
     tool = vimdiff
+[branch]
+	autosetuprebase = always
