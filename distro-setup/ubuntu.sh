@@ -68,3 +68,6 @@ sudo nala install unrar
 
 echo "Do a upgrade"
 sudo nala upgrade
+
+echo "Configure all dotfiles"
+./install
