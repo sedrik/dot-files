@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+set -euo pipefail
+
 # Ubuntu setup for new systems
 
 press_enter() {
@@ -56,6 +58,7 @@ sudo nala install lm-sensors
 echo "Setup neovim (dev version)"
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo nala install neovim
+fish -c "alias --save vim nvim"
 
 echo "Setup ripgrep"
 sudo nala install ripgrep
