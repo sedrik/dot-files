@@ -1,54 +1,12 @@
-# - clean: [
-#     '~',
-#    '~/.mutt'
-# ]
+- clean: [
+    '~',
+]
 
 - link:
     ~/.gitconfig: gitconfig
     ~/.config/nvim: nvim
     ~/.tmux.conf: tmux.conf
-
-#    ~/.agignore: agignore
-#  ~/.bash_profile: bash_profile
-#  ~/.bashrc: bashrc
-#  ~/.config/dunst/dunstrc:
-#      create: true
-#      path: dunstrc
-#  ~/.config/gopass/config.yml:
-#      create: true
-#      path: gopass.yml
-#  ~/.config/phpactor/phpactor.yml:
-#      create: true
-#      path: phpactor.yml
-#  ~/.config/rofi/config:
-#      create: true
-#      path: rofi.config
-#  ~/.config/termite/config:
-#      create: true
-#      path: termite.config
-#  ~/.ctags: ctags
-#  ~/.dircolors: dircolors
-#  ~/.gitignore_global: gitignore_global
-#  ~/.gvimrc: gvimrc
-#  ~/.i3: i3
-#  ~/.i3blocks.conf: i3blocks.conf
-#  ~/.i3status.conf: i3status.conf
-#  ~/.jshintrc: jshintrc
-#  ~/.mutt/colorscheme-jess.muttrc:
-#      create: true
-#      path: mutt/colorscheme-jess.muttrc
-#  ~/.mutt/mailcap: mutt/mailcap
-#  ~/.muttrc: muttrc
-#  ~/.ncmpcpp/config:
-#      create: true
-#      path: ncmpcpp.conf
-#  ~/.tmux: tmux
-#  ~/.tmux_darwin.conf: tmux_darwin.conf
-#  ~/.tmux_linux.conf: tmux_linux.conf
-#  ~/.vimperatorrc: vimperatorrc
-#  ~/.config/kitty: kitty
-#  ~/.xinitrc: xinitrc
-#  ~/.Xmodmap: Xmodmap
+    ~/.Xmodmap: Xmodmap
 #  ~/.Xresources: Xresources
 #  ~/.zshrc: zshrc
 
