@@ -34,6 +34,7 @@ sudo nala install firefox-dev
 echo "Setup fish"
 sudo add-apt-repository ppa:fish-shell/release-3
 sudo nala install fish
+sudo chsh -s /usr/bin/fish sedrik
 
 echo "Setup git"
 sudo nala install git
