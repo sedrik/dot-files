@@ -88,5 +88,8 @@ echo "starship init fish | source" >> ~/.config/fish/config.fish
 echo "Do a upgrade"
 sudo nala upgrade
 
+echo "Setup build-essential"
+sudo nala install build-essential
+
 echo "Configure all dotfiles"
 ./install
