@@ -18,11 +18,27 @@ echo "Setup git"
 sudo nala install git
 
 echo "Setup FiraCode Nerd font"
+sudo nala install fonts-firacode
 git clone --depth=1 https://github.com/ryanoasis/nerd-fonts.git ~/.nerd-fonts
 pushd ~/.nerd-fonts
-./install.sh FiraCode
+./install.sh NerdFontsSymbolsOnly
 popd
 rm -rf ~/.nerd-fonts
+mkdir -p ~/.config/fontconfig
+# Enter this into ~/.config/fontconfig/fonts.conf or make it a dot-file and
+# install it using dotbot
+# <?xml version='1.0'?>
+# <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+# <fontconfig>
+#     <alias>
+#         <family>sans-serif</family>
+#         <prefer>
+#                 <family>Fira Code</family>
+#                 <family>FantasqueSansMono Nerd Font</family>
+#         </prefer>
+#     </alias>
+# </fontconfig>
+fc-cache -vf
 
 echo "Setup regolith-desktop"
 wget -qO - https://regolith-desktop.org/regolith.key | gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null

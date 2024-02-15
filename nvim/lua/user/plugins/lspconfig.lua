@@ -22,27 +22,21 @@ return {
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-        -- Vue, JavaScript, TypeScript
-        require('lspconfig').volar.setup({
-            on_attach = function(client, bufnr)
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
-                -- if client.server_capabilities.inlayHintProvider then
-                --   vim.lsp.buf.inlay_hint(bufnr, true)
-                -- end
-            end,
+        -- JavaScript, TypeScript
+        require 'lspconfig'.tsserver.setup {
+            cmd = {"yarn", "exec", "typescript-language-server", "--stdio" }
+        }
+        require 'lspconfig'.eslint.setup({
             capabilities = capabilities,
-            -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-            -- This drastically improves the responsiveness of diagnostic updates on change
-            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         })
 
         -- Tailwind CSS
-        require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
+        -- require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
 
         -- JSON
         require('lspconfig').jsonls.setup({
             capabilities = capabilities,
+            provideFormatter = false,
             settings = {
                 json = {
                     schemas = require('schemastore').json.schemas(),
@@ -94,24 +88,28 @@ return {
         }
 
 
+        -- Python
+        require'lspconfig'.pylyzer.setup{}
+
+
         -- null-ls
         local null_ls = require('null-ls')
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({
             temp_dir = '/tmp',
             sources = {
-                null_ls.builtins.diagnostics.eslint_d.with({
-                    condition = function(utils)
-                        return utils.root_has_file({ '.eslintrc.js' })
-                    end,
-                }),
+                -- null_ls.builtins.diagnostics.eslint_d.with({
+                --     condition = function(utils)
+                --         return utils.root_has_file({ '.eslintrc.js' })
+                --     end,
+                -- }),
                 -- null_ls.builtins.diagnostics.phpstan, -- TODO: Only if config file
                 null_ls.builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
-                null_ls.builtins.formatting.eslint_d.with({
-                    condition = function(utils)
-                        return utils.root_has_file({ '.eslintrc.js', '.eslintrc.json' })
-                    end,
-                }),
+                -- null_ls.builtins.formatting.eslint_d.with({
+                --     condition = function(utils)
+                --         return utils.root_has_file({ '.eslintrc.js', '.eslintrc.json' })
+                --     end,
+                -- }),
                 null_ls.builtins.formatting.pint.with({
                     condition = function(utils)
                         return utils.root_has_file({ 'vendor/bin/pint' })
@@ -148,7 +146,7 @@ return {
         -- Keymaps
         vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
         vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-        vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+        vim.keymap.set('n', '<leader><leader>', '<cmd>lua vim.diagnostic.goto_next()<CR>')
         vim.keymap.set('n', 'gd', ':Telescope lsp_definitions<CR>')
         vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
         vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<CR>')

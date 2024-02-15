@@ -20,13 +20,13 @@ require("lazy").setup({
         -- { 'christoomey/vim-tmux-navigator' },
 
         -- A wiki in vim, good for quick note taking
-        { "vimwiki/vimwiki",                       lazy = false },
+        { "vimwiki/vimwiki", lazy = false },
 
         -- Automatically create parent dirs when saving.
         { 'jessarcher/vim-heritage' },
 
         -- Fuzzy finder
-        { import = 'user.plugins.telescope' },
+        { import = 'user.plugins.telescope', lazy = false },
 
         -- File tree sidebar
         { import = 'user.plugins.neo-tree' },

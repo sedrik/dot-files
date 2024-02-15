@@ -3,10 +3,11 @@
     name = Fredrik Park
 [push]
     default = current
+    autoSetupRemote = true
 [core]
     editor = vim
     autocrlf = input
-	excludesfile = /home/sedrik/.gitignore
+    excludesfile = /home/sedrik/.gitignore
 [diff]
     tool = vimdiff
 [merge]
