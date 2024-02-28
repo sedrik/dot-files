@@ -3,10 +3,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Quickly clear search highlighting.
-vim.keymap.set('n', '<leader>k', ':nohlsearch<CR>')
+vim.keymap.set('n', '<leader><CR>', ':nohlsearch<CR>')
 
 -- Close all open buffers.
--- vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>')
+vim.keymap.set('n', '<leader>Q', ':%bd|e#<CR> | :Neotree reveal toggle<CR>')
 
 -- Allow gf to open non-existent files.
 vim.keymap.set('', 'gf', ':edit <cfile><CR>')
