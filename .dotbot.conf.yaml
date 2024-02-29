@@ -8,6 +8,7 @@
     ~/.tmux.conf: tmux.conf
     ~/.Xmodmap: Xmodmap
     ~/.config/fish/config.fish: config.fish
+    ~/.config/alacritty/alacritty.toml: alacritty.toml
 
 # TODO setup fisher with potential plugins (nvim.fish)
 
