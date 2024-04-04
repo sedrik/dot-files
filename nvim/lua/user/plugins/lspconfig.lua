@@ -24,7 +24,7 @@ return {
 
         -- JavaScript, TypeScript
         require 'lspconfig'.tsserver.setup {
-            cmd = {"yarn", "exec", "typescript-language-server", "--stdio" }
+            cmd = {"yarn", "exec", "typescript-language-server", "--stdio" },
         }
         require 'lspconfig'.eslint.setup({
             capabilities = capabilities,
@@ -89,8 +89,32 @@ return {
 
 
         -- Python
-        require'lspconfig'.pylyzer.setup{}
-
+        require 'lspconfig'.pylsp.setup {
+            settings = {
+                pylsp = {
+                    plugins = {
+                        -- formatter options
+                        black = { enabled = true },
+                        autopep8 = { enabled = false },
+                        yapf = { enabled = false },
+                        -- linter options
+                        pylint = { enabled = false, executable = "pylint" },
+                        pyflakes = { enabled = false },
+                        pycodestyle = { enabled = false },
+                        -- type checker
+                        pylsp_mypy = { enabled = true },
+                        -- auto-completion options
+                        jedi_completion = { fuzzy = true },
+                        -- import sorting
+                        -- pyls_isort = { enabled = true },
+                    },
+                },
+            },
+            flags = {
+                debounce_text_changes = 200,
+            },
+            capabilities = capabilities,
+        }
 
         -- null-ls
         local null_ls = require('null-ls')

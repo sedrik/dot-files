@@ -33,6 +33,11 @@ vim.keymap.set('n',"<C-l>","<C-w>l")
 vim.keymap.set('n',"<C-j>","<C-w>j")
 vim.keymap.set('n',"<C-k>","<C-w>k")
 
+-- No arrow keys.
+vim.keymap.set('n', '<Up>', '<Nop>')
+vim.keymap.set('n', '<Down>', '<Nop>')
+vim.keymap.set('n', '<Left>', '<Nop>')
+vim.keymap.set('n', '<Right>', '<Nop>')
 
 -- Easy insertion of a trailing ; or , from insert mode.
 -- vim.keymap.set('i', ';;', '<Esc>A;<Esc>')

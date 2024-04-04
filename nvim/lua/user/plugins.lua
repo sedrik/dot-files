@@ -55,6 +55,8 @@ require("lazy").setup({
         -- GitHub Copilot
         { import = 'user.plugins.copilot' },
 
+        -- venv-selector
+        { import = 'user.plugins.venv-selector'}
     },
     {
         checker = {
