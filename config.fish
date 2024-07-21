@@ -17,4 +17,6 @@ if status is-interactive
   nvm use lts
 
   zoxide init --cmd cd fish | source
+
+  source "$HOME/.cargo/env.fish"
 end
