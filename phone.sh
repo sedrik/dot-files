@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-PHONE=192.168.1.111
+PHONE=192.168.1.112
 PORT=$( nmap -sT ${PHONE} -p32000-49999 | awk -F/ '/tcp open/{print $1}' )
 
 echo "Ports $PORT"
