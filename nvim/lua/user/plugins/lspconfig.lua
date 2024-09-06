@@ -23,7 +23,7 @@ return {
         local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
         -- JavaScript, TypeScript
-        require 'lspconfig'.tsserver.setup {
+        require 'lspconfig'.ts_ls.setup {
             cmd = {"yarn", "exec", "typescript-language-server", "--stdio" },
         }
         require 'lspconfig'.eslint.setup({
@@ -89,32 +89,7 @@ return {
 
 
         -- Python
-        require 'lspconfig'.pylsp.setup {
-            settings = {
-                pylsp = {
-                    plugins = {
-                        -- formatter options
-                        black = { enabled = true },
-                        autopep8 = { enabled = false },
-                        yapf = { enabled = false },
-                        -- linter options
-                        pylint = { enabled = false, executable = "pylint" },
-                        pyflakes = { enabled = false },
-                        pycodestyle = { enabled = false },
-                        -- type checker
-                        pylsp_mypy = { enabled = true },
-                        -- auto-completion options
-                        jedi_completion = { fuzzy = true },
-                        -- import sorting
-                        -- pyls_isort = { enabled = true },
-                    },
-                },
-            },
-            flags = {
-                debounce_text_changes = 200,
-            },
-            capabilities = capabilities,
-        }
+        require('lspconfig').ruff.setup({})
 
         -- null-ls
         local null_ls = require('null-ls')
@@ -122,18 +97,7 @@ return {
         null_ls.setup({
             temp_dir = '/tmp',
             sources = {
-                -- null_ls.builtins.diagnostics.eslint_d.with({
-                --     condition = function(utils)
-                --         return utils.root_has_file({ '.eslintrc.js' })
-                --     end,
-                -- }),
-                -- null_ls.builtins.diagnostics.phpstan, -- TODO: Only if config file
                 null_ls.builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
-                -- null_ls.builtins.formatting.eslint_d.with({
-                --     condition = function(utils)
-                --         return utils.root_has_file({ '.eslintrc.js', '.eslintrc.json' })
-                --     end,
-                -- }),
                 null_ls.builtins.formatting.pint.with({
                     condition = function(utils)
                         return utils.root_has_file({ 'vendor/bin/pint' })

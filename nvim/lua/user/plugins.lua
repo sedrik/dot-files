@@ -40,9 +40,6 @@ require("lazy").setup({
         -- Display indentation lines.
         { import = 'user.plugins.indent-blankline' },
 
-        --- Floating terminal.
-        -- { import = 'user.plugins.floaterm' },
-
         -- Improved syntax highlighting
         { import = 'user.plugins.treesitter' },
 
@@ -54,9 +51,6 @@ require("lazy").setup({
 
         -- GitHub Copilot
         { import = 'user.plugins.copilot' },
-
-        -- venv-selector
-        { import = 'user.plugins.venv-selector'}
     },
     {
         checker = {
