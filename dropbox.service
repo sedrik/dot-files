@@ -1,3 +1,4 @@
+# From https://www.bbkane.com/blog/dropbox-as-a-systemd-service/
 [Unit]
 Description=Dropbox as a user service
 After=local-fs.target network.target
