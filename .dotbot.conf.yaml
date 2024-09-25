@@ -11,6 +11,7 @@
     ~/.config/alacritty/alacritty.toml: alacritty.toml
     ~/.config/fontconfig/fonts.conf: fonts.conf
     ~/phone.sh: phone.sh
+    ~/.config/systemd/user/dropbox.service: dropbox.service
 
 # TODO setup fisher with potential plugins (nvim.fish)
 
@@ -18,3 +19,7 @@
     - [fc-cache -vf]
     - [git submodule update --init --recursive, Installing submodules]
     - [cargo install zoxide --locked, Installing zoxide]
+
+    # Install and setup dropbox
+    - [cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -]
+    - [systemctl --user enable dropbox]
