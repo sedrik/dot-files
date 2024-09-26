@@ -19,7 +19,8 @@
     - [fc-cache -vf]
     - [git submodule update --init --recursive, Installing submodules]
     - [cargo install zoxide --locked, Installing zoxide]
-
     # Install and setup dropbox
     - [cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -]
     - [systemctl --user enable dropbox]
+    - [curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher]
+    - [fisher install jorgebucaran/nvm.fish]
