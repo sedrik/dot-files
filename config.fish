@@ -15,4 +15,7 @@ if status is-interactive
   zoxide init --cmd cd fish | source
 
   source "$HOME/.cargo/env.fish"
+
+  pyenv init - | source
+  pyenv virtualenv-init - | source
 end

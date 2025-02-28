@@ -9,9 +9,9 @@
     autocrlf = input
     excludesfile = /home/sedrik/.gitignore
 [diff]
-    tool = vimdiff
+    tool = nvimdiff
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
 [pull]
     rebase = false
 [init]

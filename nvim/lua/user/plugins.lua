@@ -51,6 +51,9 @@ require("lazy").setup({
 
         -- GitHub Copilot
         { import = 'user.plugins.copilot' },
+
+        -- Csv
+        { import = 'user.plugins.csvview' },
     },
     {
         checker = {

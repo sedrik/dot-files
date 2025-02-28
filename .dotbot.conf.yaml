@@ -13,14 +13,13 @@
     ~/phone.sh: phone.sh
     ~/.config/systemd/user/dropbox.service: dropbox.service
 
-# TODO setup fisher with potential plugins (nvim.fish)
+# TODO setup ls ~/.config/regolith3/sway/config.d/display ~/.config/regolith3/i3/config.d/display
 
 - shell:
     - [fc-cache -vf]
     - [git submodule update --init --recursive, Installing submodules]
     - [cargo install zoxide --locked, Installing zoxide]
-    # Install and setup dropbox
-    - [cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -]
+    - [cd ~ && wget -O - https://www.dropbox.com/download?plat=lnx.x86_64 | tar xzf -, setup docker]
     - [systemctl --user enable dropbox]
     - [curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher]
     - [fisher install jorgebucaran/nvm.fish]

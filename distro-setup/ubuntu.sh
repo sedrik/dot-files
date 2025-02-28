@@ -58,23 +58,10 @@ press_enter() {
 # sudo add-apt-repository ppa:fish-shell/release-3
 # sudo nala install fish
 # sudo chsh -s /usr/bin/fish sedrik
-# 
-# echo "Setup google-drive-ocamlfuse (to sync keepassxc files)"
-# sudo add-apt-repository ppa:alessandro-strada/ppa
-# sudo nala install google-drive-ocamlfuse
-# 
-# echo "Setup htop"
-# sudo nala install htop
-# 
-# echo "Setup jq"
-# sudo nala install jq
 
 # echo "Setup keepassxc"
 # sudo add-apt-repository ppa:phoerious/keepassxc
 # sudo nala install keepassxc
-
-# echo "Setup lm-sensors"
-# sudo nala install lm-sensors
 
 # echo "Setup neovim (dev version)"
 # sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -99,6 +86,9 @@ press_enter() {
 # 
 # echo "Setup build-essential"
 # sudo nala install build-essential
+
+# echo "Setup fzf"
+# sudo nala install fzf
 
 echo "setup rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
