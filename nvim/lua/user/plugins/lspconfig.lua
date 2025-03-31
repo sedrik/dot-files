@@ -84,7 +84,11 @@ return {
                         enable = false,
                     }
                 }
-            }
+            },
+            on_attach = function(client, bufnr)
+                -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                vim.g.rustfmt_autosave = 1
+            end
         }
 
 
