@@ -50,7 +50,10 @@ require("lazy").setup({
         { import = 'user.plugins.cmp' },
 
         -- GitHub Copilot
-        { import = 'user.plugins.copilot' },
+        -- { import = 'user.plugins.copilot' },
+
+        -- Avante AI
+        { import = 'user.plugins.avante' },
 
         -- Csv
         { import = 'user.plugins.csvview' },
