@@ -1,0 +1,16 @@
+[user]
+name = "Fredrik Park"
+email = "sir.sedrik@gmail.com"
+
+[ui]
+default-command = "log"
+editor = "nvim"
+diff-editor = ":builtin"
+
+
+[git]
+colocate = true
+
+[revsets]
+log = "@ | ancestors(immutable_heads().., 5) | heads(immutable_heads())"
+immutable_heads = "main@develop | develop@origin | tags()"

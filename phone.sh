@@ -1,19 +1,19 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 set -e
 
-PHONE=192.168.1.110
-PORT=$( nmap -sT ${PHONE} -p32000-49999 | awk -F/ '/tcp open/{print $1}' )
+PHONE=192.168.1.64
+PORT=$(nmap -sT ${PHONE} -p25000-49999 | awk -F/ '/tcp open/{print $1}')
 
 echo "Ports $PORT"
 
-for port in $PORT
-do
-    adb disconnect
-    res=$(adb connect ${PHONE}:${port})
+for port in $PORT; do
+  adb disconnect
+  res=$(adb connect ${PHONE}:${port})
+  echo $res
 
-    if [[ $res == failed* ]]; then
-        continue
-    fi
-    scrcpy -s ${PHONE} -S --no-audio
+  if [[ $res == failed* ]]; then
+    continue
+  fi
+  scrcpy -s ${PHONE} -S --no-audio
 done

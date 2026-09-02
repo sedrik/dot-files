@@ -8,8 +8,8 @@ return {
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
         'b0o/schemastore.nvim',
-        { 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
-        'jayp0521/mason-null-ls.nvim',
+        { 'nvimtools/none-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
+        'nvimtools/none-ls.nvim',
     },
     config = function()
         -- Setup Mason to automatically install LSP servers
@@ -133,7 +133,7 @@ return {
             end,
         })
 
-        require('mason-null-ls').setup({ automatic_installation = true })
+        --require('mason-null-ls').setup({ automatic_installation = true })
 
         -- Keymaps
         vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')

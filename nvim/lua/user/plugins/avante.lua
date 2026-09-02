@@ -7,8 +7,9 @@ return {
     -- for example
     provider = "ollama",
     ollama = {
-        --model = "deepseek-coder-v2:16b",
-        model = "deepseek-r1:1.5b",
+        model = "deepseek-r1:32b",
+        --model = "deepseek-coder-v2:latest",
+        --model = "deepseek-r1:1.5b",
     }
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -40,6 +41,14 @@ return {
           },
           -- required for Windows users
           use_absolute_path = true,
+        },
+        rag_service = {
+            enabled = true, -- Enables the RAG service
+            host_mount = os.getenv("HOME"), -- Host mount path for the rag service
+            provider = "ollama", -- The provider to use for RAG service (e.g. openai or ollama)
+            llm_model = "deepseek-r1:32b", -- The LLM model to use for RAG service
+            embed_model = "nomic-embed-text", -- The embedding model to use for RAG service
+            endpoint = "http://localhost:11434", -- The API endpoint for RAG service
         },
       },
     },

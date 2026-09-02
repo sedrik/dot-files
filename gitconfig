@@ -9,9 +9,12 @@
     autocrlf = input
     excludesfile = /home/sedrik/.gitignore
 [diff]
-    tool = nvim -d
+    external = difft
+    tool = "nvim -d"
 [merge]
-    tool = nvim -d
+    tool = "nvim"
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 [pull]
     rebase = false
 [init]
@@ -19,6 +22,14 @@
 [fetch]
     prune = true
 [alias]
-	rmb = ! git branch --merged | grep -Ev \"(^\\*|main)\" | xargs git branch -d
+	rmb1 = ! git branch --merged | grep -Ev \"(^\\*|master|develop|main|dev)\" | xargs git branch -d
+  rmb2 = ! git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -D
+  rmb = ! git rmb2 && git rmb1
 [rerere]
 	enabled = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

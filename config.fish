@@ -8,14 +8,28 @@ end
 if status is-interactive
     # Commands to run in interactive sessions can go here
     # sleep 1 & xmodmap ~/.Xmodmap > /dev/null
-  starship init fish | source
+    starship init fish | source
 
-  nvm use lts
+    nvm use lts
 
-  zoxide init --cmd cd fish | source
+    zoxide init --cmd cd fish | source
 
-  source "$HOME/.cargo/env.fish"
+    source "$HOME/.cargo/env.fish"
 
-  pyenv init - | source
-  pyenv virtualenv-init - | source
+    pyenv init - fish | source
+    pyenv virtualenv-init - | source
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/sedrik/Downloads/google-cloud-sdk/path.fish.inc' ]
+    . '/home/sedrik/Downloads/google-cloud-sdk/path.fish.inc'
+end
+
+# opencode
+fish_add_path /home/sedrik/.opencode/bin
+
+# >>> rocm-cli path >>>
+if not contains -- "$HOME/.local/bin" $PATH
+    set -gx PATH "$HOME/.local/bin" $PATH
+end
+# <<< rocm-cli path <<<
